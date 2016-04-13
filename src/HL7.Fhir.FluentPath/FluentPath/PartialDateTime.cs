@@ -78,6 +78,10 @@ namespace Hl7.Fhir.FluentPath
                 return (obj as PartialDateTime).Value == Value;
             return base.Equals(obj);
         }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode() ^ Prec.GetHashCode();
+        }
 
         public override string ToString()
         {
