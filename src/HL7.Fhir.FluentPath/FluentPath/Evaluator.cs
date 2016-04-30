@@ -296,9 +296,32 @@ namespace Hl7.Fhir.FluentPath
             };
         }
 
+        /// <summary>
+        /// This value is here primarily for unit testing to make the value predictable
+        /// </summary>
+        public static DateTimeOffset? FixedEvaluateNowValue;
+        public static Evaluator Now()
+        {
+            return (f, c) =>
+            {
+                if (FixedEvaluateNowValue.HasValue)
+                {
+                    return new[] { new ConstantValue(PartialDateTime.FromDateTime(FixedEvaluateNowValue.Value)) };
+                }
+                return new[] { new ConstantValue(PartialDateTime.Now()) };
+            };
+        }
+
         public static Evaluator Today()
         {
-            return Eval.Return(PartialDateTime.Today());
+            return (f, c) =>
+            {
+                if (FixedEvaluateNowValue.HasValue)
+                {
+                    return new[] { new ConstantValue(PartialDateTime.FromDateTime(FixedEvaluateNowValue.Value.Date)) };
+                }
+                return new[] { new ConstantValue(PartialDateTime.Today()) };
+            };
         }
 
         public static Evaluator Distinct()

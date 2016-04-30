@@ -94,21 +94,30 @@ namespace Hl7.Fhir.Tests.FhirPath
                     @"Patient.**.where($focus.contains('222')).item(1) = $context.contained.address.line", tree));
         }
 
-        //[TestMethod, TestCategory("FhirPath")]
-        //public void TestExpressionTodayFunction()
-        //{
-        //    // Check that date comes in
-        //    Assert.AreEqual(PartialDateTime.Parse(DateTime.Today.ToFhirDate()).ToString(), PathExpression.Evaluate("today()", tree).AsDateTime().ToString());
+        [TestMethod, TestCategory("FhirPath")]
+        public void TestExpressionTodayFunction()
+        {
+            // Check that date comes in
+            Assert.AreEqual(DateTime.Today.ToString("yyyy-MM-dd"), PathExpression.Scalar("today()", tree).ToString());
 
-        //    // Check greater than
-        //    Assert.IsTrue(PathExpression.Predicate("today() < " + DateTime.Today.AddDays(1).ToFhirDate(), tree));
+            //// Check greater than
+            //Assert.IsTrue(PathExpression.IsTrue("today() < " + DateTime.Today.AddDays(1).ToFhirDate(), tree));
 
-        //    // Check less than
-        //    Assert.IsTrue(PathExpression.Predicate("today() > " + DateTime.Today.AddDays(-1).ToFhirDate(), tree));
+            //// Check less than
+            //Assert.IsTrue(PathExpression.IsTrue("today() > " + DateTime.Today.AddDays(-1).ToFhirDate(), tree));
 
-        //    // Check ==
-        //    Assert.IsTrue(PathExpression.Predicate("today() = " + DateTime.Today.ToFhirDate(), tree));
-        //}
+            //// Check greater than or equal
+            //Assert.IsTrue(PathExpression.IsTrue("today() <= " + DateTime.Today.AddDays(1).ToFhirDate(), tree));
+
+            //// Check less than or equal
+            //Assert.IsTrue(PathExpression.IsTrue("today() >= " + DateTime.Today.AddDays(-1).ToFhirDate(), tree));
+
+            //// Check ==
+            //Assert.IsTrue(PathExpression.IsTrue("today() = " + DateTime.Today.ToFhirDate(), tree));
+
+            //// Check !=
+            //Assert.IsTrue(PathExpression.IsTrue("today() = " + DateTime.Today.ToFhirDate(), tree));
+        }
 
         [TestMethod, TestCategory("FhirPath")]
         public void TestExpressionSubstringFunction()
