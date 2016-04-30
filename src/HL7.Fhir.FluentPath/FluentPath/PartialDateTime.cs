@@ -69,6 +69,30 @@ namespace Hl7.Fhir.FluentPath
             return XmlConvert.ToDateTimeOffset(a._value).ToUniversalTime() > XmlConvert.ToDateTimeOffset(b._value).ToUniversalTime();
         }
 
+        // overload operator <=
+        public static bool operator <=(PartialDateTime a, PartialDateTime b)
+        {
+            return XmlConvert.ToDateTimeOffset(a._value).ToUniversalTime() <= XmlConvert.ToDateTimeOffset(b._value).ToUniversalTime();
+        }
+
+        // overload operator >=
+        public static bool operator >=(PartialDateTime a, PartialDateTime b)
+        {
+            return XmlConvert.ToDateTimeOffset(a._value).ToUniversalTime() >= XmlConvert.ToDateTimeOffset(b._value).ToUniversalTime();
+        }
+
+        // overload operator ==
+        public static bool operator ==(PartialDateTime a, PartialDateTime b)
+        {
+            return a._value == b._value;
+        }
+
+        // overload operator !=
+        public static bool operator !=(PartialDateTime a, PartialDateTime b)
+        {
+            return a._value != b._value;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is PartialDateTime)
