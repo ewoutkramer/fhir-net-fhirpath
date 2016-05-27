@@ -6,13 +6,14 @@ using Hl7.Fhir.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
 
     public class FhirEvaluationContext : BaseEvaluationContext
     {
-        IFluentPathElement OriginalResource { get; }
+        IElement OriginalResource { get; }
 
         public FhirEvaluationContext()
         {
@@ -22,11 +23,11 @@ namespace Hl7.Fhir.FluentPath
         {
         }
 
-        public FhirEvaluationContext(IFluentPathElement originalResource) : this(null, originalResource)
+        public FhirEvaluationContext(IElement originalResource) : this(null, originalResource)
         {
         }
 
-        public FhirEvaluationContext(FhirClient client, IFluentPathElement originalResource)
+        public FhirEvaluationContext(FhirClient client, IElement originalResource)
         {
             FhirClient = client;
             OriginalResource = originalResource;
@@ -35,7 +36,7 @@ namespace Hl7.Fhir.FluentPath
 
         FhirClient FhirClient { get; set; }
 
-        public override IEnumerable<IFluentPathValue> InvokeExternalFunction(string name, IEnumerable<IFluentPathValue> focus, IEnumerable<IEnumerable<IFluentPathValue>> parameters)
+        public override IEnumerable<ITypedValueProvider> InvokeExternalFunction(string name, IEnumerable<ITypedValueProvider> focus, IEnumerable<IEnumerable<ITypedValueProvider>> parameters)
         {
             if(name == "resolve")
             {
@@ -46,7 +47,7 @@ namespace Hl7.Fhir.FluentPath
         }
 
 
-        public override IEnumerable<IFluentPathValue> ResolveValue(string name)
+        public override IEnumerable<ITypedValueProvider> ResolveValue(string name)
         {
             var baseValue = base.ResolveValue(name);
             if (baseValue != null) return baseValue;
@@ -57,7 +58,7 @@ namespace Hl7.Fhir.FluentPath
             return null;
         }
 
-        public virtual IFluentPathElement ResolveResource(string url)
+        public virtual IElement ResolveResource(string url)
         {
             if (FhirClient == null)
                 throw Error.InvalidOperation($"The EvaluationContext does not have a FhirClient to use to resolve url '{url}'");

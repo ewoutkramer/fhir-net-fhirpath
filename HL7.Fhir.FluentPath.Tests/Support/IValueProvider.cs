@@ -11,7 +11,7 @@ using System;
 namespace Hl7.Fhir.Support
 {  
     /// <summary>Common interface for an object that exposes a strongly typed value.</summary>
-    public interface IValueProvider
+    public interface ITypedValueProvider
     {
         /// <summary>Returns the type of the value exposed by the current instance.</summary>
         Type ValueType { get; }
@@ -21,14 +21,14 @@ namespace Hl7.Fhir.Support
     }
 
     /// <summary>Common interface for an object that exposes a strongly typed mutable value.</summary>
-    public interface IMutableValueProvider : IValueProvider
+    public interface IMutableValueProvider : ITypedValueProvider
     {
         // object ObjectValue { get; set; }
     }
 
     /// <summary>Common generic interface for an object that exposes an strongly typed immutable value.</summary>
     /// <typeparam name="V">The value type.</typeparam>
-    public interface IValueProvider<out V> : IValueProvider
+    public interface IValueProvider<out V> : ITypedValueProvider
     {
         /// <summary>Gets a value of type <typeparamref name="V"/>.</summary>
         V Value { get; }

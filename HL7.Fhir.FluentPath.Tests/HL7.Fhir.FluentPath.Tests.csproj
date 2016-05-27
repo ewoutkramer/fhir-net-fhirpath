@@ -67,12 +67,8 @@
   <ItemGroup>
     <Compile Include="AssertParser.cs" />
     <Compile Include="ConstructFromXmlTest.cs" />
-    <Compile Include="FhirEvaluationContext.cs" />
-    <Compile Include="FhirPathEvaluatorTest.cs" />
     <Compile Include="FhirPathGrammarTest.cs" />
     <Compile Include="FhirPathLexerTest.cs" />
-    <Compile Include="ISODateTimeTest.cs" />
-    <Compile Include="FhirPathTest.cs" />
     <Compile Include="InstanceTree\FhirInstanceTree.cs" />
     <Compile Include="InstanceTree\INodeConversionStrategy.cs" />
     <Compile Include="InstanceTree\TreeConstructorXml.cs" />
@@ -85,6 +81,9 @@
     <Compile Include="InstanceTree\XElementNestedResourceConversionStrategy.cs" />
     <Compile Include="InstanceTree\XmlLineInfoWrapper.cs" />
     <Compile Include="InstanceTree\XWhitespaceStrategy.cs" />
+    <Compile Include="ISODateTimeTest.cs" />
+    <Compile Include="FhirPathTest.cs" />
+    <Compile Include="Support\IValueProvider.cs" />
     <Compile Include="Navigation\AnnotationList.cs" />
     <Compile Include="Navigation\FhirNavigationTree.cs" />
     <Compile Include="Navigation\FhirNavigationTreeOfV.cs" />

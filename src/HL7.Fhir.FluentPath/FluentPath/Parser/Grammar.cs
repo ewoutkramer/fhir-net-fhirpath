@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sprache;
-using HL7.Fhir.FluentPath.FluentPath.Expressions;
+using Hl7.Fhir.FluentPath.Expressions;
 
 namespace Hl7.Fhir.FluentPath.Parser
 {
@@ -87,15 +87,15 @@ namespace Hl7.Fhir.FluentPath.Parser
         // | expression '.' invocation                                 #invocationExpression
         // | expression '[' expression ']'                             #indexerExpression
         // | ('+' | '-') expression                                    #polarityExpression
-        // | expression('*' | '/' | 'div' | 'mod') expression         #multiplicativeExpression
-        // | expression('+' | '-' ) expression                        #additiveExpression
+        // | expression('*' | '/' | 'div' | 'mod') expression          #multiplicativeExpression
+        // | expression('+' | '-' ) expression                         #additiveExpression
         // | expression '|' expression                                 #unionExpression
-        // | expression('<=' | '<' | '>' | '>=') expression           #inequalityExpression
-        // | expression('is' | 'as') typeSpecifier                    #typeExpression
-        // | expression('=' | '~' | '!=' | '!~' | '<>') expression    #equalityExpression
-        // | expression('in' | 'contains') expression                 #membershipExpression
+        // | expression('<=' | '<' | '>' | '>=') expression            #inequalityExpression
+        // | expression('is' | 'as') typeSpecifier                     #typeExpression
+        // | expression('=' | '~' | '!=' | '!~' | '<>') expression     #equalityExpression
+        // | expression('in' | 'contains') expression                  #membershipExpression
         // | expression 'and' expression                               #andExpression
-        // | expression('or' | 'xor') expression                      #orExpression
+        // | expression('or' | 'xor') expression                       #orExpression
         // | expression 'implies' expression                           #impliesExpression
         // ;
 

@@ -20,7 +20,7 @@ namespace Hl7.Fhir.Navigation
     /// </summary>
     /// <typeparam name="T">The type of tree.</typeparam>
     /// <example><code>MyTree : IVariantNavigationTree&lt;MyTree&gt; { }</code></example>
-    public interface IVariantNavigationTree<T> : INavigationTree<T>, IVariantTreeBuilder<T>, IValueProvider
+    public interface IVariantNavigationTree<T> : INavigationTree<T>, IVariantTreeBuilder<T>, ITypedValueProvider
         where T : IVariantNavigationTree<T> { }
 
     /// <summary>

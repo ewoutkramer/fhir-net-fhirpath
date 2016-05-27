@@ -1,12 +1,10 @@
-﻿using Hl7.Fhir.FluentPath;
-using Hl7.Fhir.Support;
+﻿using Hl7.Fhir.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Hl7.Fhir.ElementModel;
 
-namespace HL7.Fhir.FluentPath.FluentPath.Expressions
+namespace Hl7.Fhir.FluentPath.Expressions
 {
     public abstract class Expression
     {

@@ -1,12 +1,13 @@
 ﻿using Hl7.Fhir.Support;
-using HL7.Fhir.FluentPath.FluentPath;
-using HL7.Fhir.FluentPath.FluentPath.Expressions;
+using Hl7.Fhir.FluentPath;
+using Hl7.Fhir.FluentPath.Expressions;
 using Sprache;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
@@ -151,7 +152,7 @@ namespace Hl7.Fhir.FluentPath
         }
         
       
-        public delegate IEnumerable<IFluentPathValue> Invokee(IEnumerable<IFluentPathValue> focus, IList<IEnumerable<IFluentPathValue>> arguments);
+        public delegate IEnumerable<IValueProvider> Invokee(IEnumerable<IValueProvider> focus, IList<IEnumerable<IValueProvider>> arguments);
 
 
         public void Validate(FunctionCallExpression expression)

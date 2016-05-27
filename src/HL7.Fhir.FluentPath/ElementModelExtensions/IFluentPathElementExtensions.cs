@@ -9,18 +9,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
     public static class IFluentPathElementExtensions
     {
-        public static IEnumerable<IFluentPathElement> Children(this IFluentPathElement element)
+        public static IEnumerable<IElement> Children(this IElement element)
         {
             return element.GetChildNames().SelectMany(name => element.GetChildrenByName(name));
         }
 
 
-        public static IEnumerable<IFluentPathElement> Children(this IFluentPathElement element, string name)
+        public static IEnumerable<IElement> Children(this IElement element, string name)
         {
 
             // REFACTOR
@@ -44,7 +45,7 @@ namespace Hl7.Fhir.FluentPath
             return result;
         }
 
-        public static IEnumerable<IFluentPathElement> Descendants(this IFluentPathElement element)
+        public static IEnumerable<IElement> Descendants(this IElement element)
         {
             //TODO: Don't think this is performant with these nested yields
             foreach (var child in element.Children())

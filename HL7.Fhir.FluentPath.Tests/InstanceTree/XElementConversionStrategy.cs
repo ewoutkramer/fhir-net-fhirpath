@@ -37,7 +37,7 @@ namespace Hl7.Fhir.FluentPath.InstanceTree
             FhirInstanceTree result = null;
 
             if (hasValue)
-                result = parent.AddLastChild(newNodeName, (IFluentPathValue)new UntypedValue(value));
+                result = parent.AddLastChild(newNodeName, (ITypedValueProvider)new UntypedValue(value));
             else
                 result = parent.AddLastChild(newNodeName);
 

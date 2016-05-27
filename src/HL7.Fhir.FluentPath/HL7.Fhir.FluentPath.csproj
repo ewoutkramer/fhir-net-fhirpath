@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElementModel\ElementExtensions.cs" />
+    <Compile Include="ElementModel\FhirValueList.cs" />
+    <Compile Include="ElementModel\INameProvider.cs" />
     <Compile Include="FluentPath\BaseEvaluationContext.cs" />
     <Compile Include="FluentPath\Evaluator.cs" />
     <Compile Include="FluentPath\Expressions\ExpressionVisitor.cs" />
@@ -57,21 +60,22 @@
     <Compile Include="FluentPath\Parser\Operators.cs" />
     <Compile Include="FluentPath\Parser\Lexer.cs" />
     <Compile Include="FluentPath\IEvaluationContext.cs" />
-    <Compile Include="FluentPath\IFluentPathElementExtensions.cs" />
-    <Compile Include="FluentPath\IFluentPathValue.cs" />
-    <Compile Include="FluentPath\IFluentPathValueExtensions.cs" />
-    <Compile Include="FluentPath\IFluentPathValueListExtensions.cs" />
+    <Compile Include="ElementModelExtensions\IFluentPathElementExtensions.cs" />
+    <Compile Include="ElementModel\IFluentPathValue.cs" />
+    <Compile Include="ElementModelExtensions\IFluentPathValueExtensions.cs" />
+    <Compile Include="ElementModelExtensions\IFluentPathValueListExtensions.cs" />
     <Compile Include="FluentPath\Operator.cs" />
     <Compile Include="FluentPath\Expressions\ExpressionNode.cs" />
-    <Compile Include="FluentPath\PartialDateTime.cs" />
+    <Compile Include="ElementModel\Node.cs" />
+    <Compile Include="ElementModel\PartialDateTime.cs" />
     <Compile Include="FluentPath\PathExpression.cs" />
-    <Compile Include="FluentPath\Time.cs" />
+    <Compile Include="ElementModel\IValueProvider.cs" />
+    <Compile Include="ElementModel\Time.cs" />
     <Compile Include="FluentPath\EvaluatorVisitor.cs" />
     <Compile Include="FluentPath\TreeVisualizerVisitor.cs" />
-    <Compile Include="FluentPath\ConstantValue.cs" />
+    <Compile Include="ElementModel\ConstantValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\IPositionInfo.cs" />
-    <Compile Include="Support\IValueProvider.cs" />
     <Compile Include="Support\Logging.cs" />
     <Compile Include="Support\StringExtensions.cs" />
   </ItemGroup>

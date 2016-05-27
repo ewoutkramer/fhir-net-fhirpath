@@ -1,5 +1,5 @@
 ﻿using Hl7.Fhir.Support;
-using FP = HL7.Fhir.FluentPath.FluentPath.Expressions;
+using FP = Hl7.Fhir.FluentPath.Expressions;
 using System.Linq.Expressions;
 using System;
 using System.Collections.Generic;
@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Hl7.Fhir.FluentPath;
+using Hl7.Fhir.ElementModel;
 
-namespace HL7.Fhir.FluentPath.FluentPath
+namespace Hl7.Fhir.FluentPath
 {
     internal class EvaluatorVisitor : FP.ExpressionVisitor<Evaluator>
     {
@@ -65,12 +66,12 @@ namespace HL7.Fhir.FluentPath.FluentPath
             throw new NotImplementedException();
         }
 
-        public static Evaluator Return(IFluentPathValue value)
+        public static Evaluator Return(IValueProvider value)
         {
-            return _ => new[] { (IFluentPathValue)value };
+            return _ => (new[] { (IValueProvider)value });
         }
 
-        public static Evaluator Return(IEnumerable<IFluentPathValue> value)
+        public static Evaluator Return(IEnumerable<IValueProvider> value)
         {
             return _ => value;
         }

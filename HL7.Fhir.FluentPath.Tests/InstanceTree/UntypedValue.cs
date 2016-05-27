@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace Hl7.Fhir.FluentPath.InstanceTree
 {
-    internal class UntypedValue : IFluentPathValue
+    internal class UntypedValue : IValueProvider
     {
         public string Representation { get; private set; }  
 

@@ -6,14 +6,13 @@
  * available at https://raw.githubusercontent.com/ewoutkramer/fhir-net-api/master/LICENSE
  */
 
-using Hl7.Fhir.Support;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using Hl7.Fhir.ElementModel;
+using Hl7.Fhir.Support;
 
-namespace Hl7.Fhir.FluentPath
+namespace Hl7.Fhir.ElementModel
 {
-    public class ConstantValue : IFluentPathValue
+    public class ConstantValue : IValueProvider
     {
         public static object ToFluentPathValue(object value)
         {
@@ -68,8 +67,8 @@ namespace Hl7.Fhir.FluentPath
 
         public override bool Equals(object obj)
         {
-            if (obj is IFluentPathValue)
-                return Object.Equals((obj as IFluentPathValue).Value,Value);
+            if (obj is IValueProvider)
+                return Object.Equals((obj as IValueProvider).Value,Value);
             else
                 return false;
         }

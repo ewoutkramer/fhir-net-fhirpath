@@ -11,6 +11,7 @@ using Hl7.Fhir.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
@@ -20,9 +21,9 @@ namespace Hl7.Fhir.FluentPath
         {
         }
 
-        private Stack<IEnumerable<IFluentPathValue>> _focusStack = new Stack<IEnumerable<IFluentPathValue>>();
+        private Stack<IEnumerable<IValueProvider>> _focusStack = new Stack<IEnumerable<IValueProvider>>();
 
-        public Stack<IEnumerable<IFluentPathValue>> FocusStack
+        public Stack<IEnumerable<IValueProvider>> FocusStack
         {
             get
             {
@@ -30,14 +31,14 @@ namespace Hl7.Fhir.FluentPath
             }
         }
 
-        public IEnumerable<IFluentPathValue> OriginalContext { get; set; }
+        public IEnumerable<IValueProvider> OriginalContext { get; set; }
 
-        public virtual IEnumerable<IFluentPathValue> InvokeExternalFunction(string name, IEnumerable<IFluentPathValue> focus, IEnumerable<IEnumerable<IFluentPathValue>> parameters)
+        public virtual IEnumerable<IValueProvider> InvokeExternalFunction(string name, IEnumerable<IValueProvider> focus, IEnumerable<IEnumerable<IValueProvider>> parameters)
         {
             throw new NotSupportedException("Function '{0}' is unknown".FormatWith(name));
         }
 
-        public virtual void Log(string argument, IEnumerable<IFluentPathValue> focus)
+        public virtual void Log(string argument, IEnumerable<IValueProvider> focus)
         {
             System.Diagnostics.Trace.WriteLine(argument);
 
@@ -48,7 +49,7 @@ namespace Hl7.Fhir.FluentPath
             }
         }
 
-        public virtual IEnumerable<IFluentPathValue> ResolveValue(string name)
+        public virtual IEnumerable<IValueProvider> ResolveValue(string name)
         {
             if (name == "context")
                 return OriginalContext;
