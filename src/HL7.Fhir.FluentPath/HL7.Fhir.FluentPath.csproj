@@ -48,9 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ElementModel\ElementExtensions.cs" />
-    <Compile Include="ElementModel\FhirValueList.cs" />
-    <Compile Include="ElementModel\INameProvider.cs" />
+    <Compile Include="ElementModel\Element.cs" />
+    <Compile Include="ElementModel\ElementNavigator.cs" />
+    <Compile Include="ElementModel\Node.cs" />
+    <Compile Include="ElementModel\SerializationUtil.cs" />
+    <Compile Include="ElementReader\ElementExtensions.cs" />
+    <Compile Include="ElementReader\FhirValueList.cs" />
+    <Compile Include="ElementReader\INameProvider.cs" />
     <Compile Include="FluentPath\BaseEvaluationContext.cs" />
     <Compile Include="FluentPath\Evaluator.cs" />
     <Compile Include="FluentPath\Expressions\ExpressionVisitor.cs" />
@@ -60,20 +64,20 @@
     <Compile Include="FluentPath\Parser\Operators.cs" />
     <Compile Include="FluentPath\Parser\Lexer.cs" />
     <Compile Include="FluentPath\IEvaluationContext.cs" />
-    <Compile Include="ElementModelExtensions\IFluentPathElementExtensions.cs" />
-    <Compile Include="ElementModel\IFluentPathValue.cs" />
-    <Compile Include="ElementModelExtensions\IFluentPathValueExtensions.cs" />
-    <Compile Include="ElementModelExtensions\IFluentPathValueListExtensions.cs" />
+    <Compile Include="ElementReaderExtensions\IElementReaderExtensions.cs" />
+    <Compile Include="ElementReader\IElementReader.cs" />
+    <Compile Include="ElementReaderExtensions\IValueProviderExtensions.cs" />
+    <Compile Include="ElementReaderExtensions\IValueProviderListExtensions.cs" />
     <Compile Include="FluentPath\Operator.cs" />
     <Compile Include="FluentPath\Expressions\ExpressionNode.cs" />
-    <Compile Include="ElementModel\Node.cs" />
-    <Compile Include="ElementModel\PartialDateTime.cs" />
+    <Compile Include="ElementReader\INodeReader.cs" />
+    <Compile Include="ElementReader\PartialDateTime.cs" />
     <Compile Include="FluentPath\PathExpression.cs" />
-    <Compile Include="ElementModel\IValueProvider.cs" />
-    <Compile Include="ElementModel\Time.cs" />
+    <Compile Include="ElementReader\IValueProvider.cs" />
+    <Compile Include="ElementReader\Time.cs" />
     <Compile Include="FluentPath\EvaluatorVisitor.cs" />
     <Compile Include="FluentPath\TreeVisualizerVisitor.cs" />
-    <Compile Include="ElementModel\ConstantValue.cs" />
+    <Compile Include="ElementReader\ConstantValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\IPositionInfo.cs" />
     <Compile Include="Support\Logging.cs" />
@@ -81,6 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Navigation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

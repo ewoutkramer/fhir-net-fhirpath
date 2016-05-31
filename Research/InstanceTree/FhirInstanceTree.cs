@@ -16,8 +16,9 @@ using Hl7.Fhir.ElementModel;
 namespace Hl7.Fhir.FluentPath.InstanceTree
 {
     /// <summary>Represents a FHIR navigation tree with node values of type <see cref="IFluentPathElement"/>.</summary>
-    public class FhirInstanceTree : ValueNavigationTree<FhirInstanceTree, ITypedValueProvider>, INode<FhirInstanceTree>, 
+    public class FhirInstanceTree : ValueNavigationTree<FhirInstanceTree, ITypedValueProvider>, ILinkedTree<FhirInstanceTree>
     {
+        
         #region Public Factory Methods
 
         /// <summary>Create a new <see cref="FhirInstanceTree"/> root node with the specified name.</summary>
@@ -52,28 +53,17 @@ namespace Hl7.Fhir.FluentPath.InstanceTree
             get
             {
                 if (Self.Value != null)
-                    return Self.Value.Value;
+                    return Self.Value;
                 else
                     return null;
             }
         }
 
-        [Obsolete("This method will be removed from the interface of IFluentPathElement")]
+        //[Obsolete("This method will be removed from the interface of IFluentPathElement")]
         //IEnumerable<ChildNode> IFluentPathElement.Children()
         //{
         //    return LinkedTreeExtensions.Children(this).Select(c => new ChildNode(c.Name, c));
         //}
-
-
-        IEnumerable<FhirInstanceTree> GetChildren()
-        {
-            return LinkedTreeExtensions.Children(this).Select(c => c.Name);
-        }
-
-        IEnumerable<IElement> IElement.GetChildrenByName(string name)
-        {
-            return LinkedTreeExtensions.Children(this).Where(c => c.Name == name);
-        }
 
         // REFACTORED: Parent is removed.
         //IFluentPathElement IFluentPathElement.Parent

@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Hl7.Fhir.FluentPath;
 using Sprache;
 using Hl7.Fhir.FluentPath.Parser;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.Tests.FhirPath
 {

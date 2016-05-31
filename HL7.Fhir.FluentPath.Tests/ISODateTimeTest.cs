@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sprache;
 using Hl7.Fhir.FluentPath;
+using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.Tests.FhirPath
 {

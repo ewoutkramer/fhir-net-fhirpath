@@ -23,7 +23,7 @@ namespace Hl7.Fhir.Support
     /// <summary>Common interface for an object that exposes a strongly typed mutable value.</summary>
     public interface IMutableValueProvider : ITypedValueProvider
     {
-        // object ObjectValue { get; set; }
+        object ObjectValue { get; set; }
     }
 
     /// <summary>Common generic interface for an object that exposes an strongly typed immutable value.</summary>

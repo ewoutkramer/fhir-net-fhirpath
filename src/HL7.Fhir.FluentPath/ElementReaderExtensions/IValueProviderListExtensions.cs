@@ -17,9 +17,9 @@ namespace Hl7.Fhir.FluentPath
     public static class ValueProviderExtensions
     {
 
-        public static IEnumerable<IElement> JustElements(this IEnumerable<IValueProvider> focus)
+        public static IEnumerable<IElementReader> JustElements(this IEnumerable<IValueProvider> focus)
         {
-            return focus.OfType<IElement>();
+            return focus.OfType<IElementReader>();
         }
 
         public static IEnumerable<IValueProvider> JustValues(this IEnumerable<IValueProvider> focus)
@@ -256,7 +256,7 @@ namespace Hl7.Fhir.FluentPath
             return focus.Children("extension").Where(es => es.Children("url").IsEqualTo(url));
         }
 
-        public static IEnumerable<IElement> Children(this IEnumerable<IValueProvider> focus, string name)
+        public static IEnumerable<IElementReader> Children(this IEnumerable<IValueProvider> focus, string name)
         {
             return focus.JustElements().SelectMany(node => node.Children(name));
         }
@@ -272,22 +272,22 @@ namespace Hl7.Fhir.FluentPath
         //}
 
 
-        public static IEnumerable<IElement> Children(this IValueProvider focus)
+        public static IEnumerable<IElementReader> Children(this IValueProvider focus)
         {
-            if (focus is IElement)
+            if (focus is IElementReader)
             {
-                return ((IElement)focus).Children();
+                return ((IElementReader)focus).Children();
             }
 
-            return Enumerable.Empty<IElement>();
+            return Enumerable.Empty<IElementReader>();
         }
 
-        public static IEnumerable<IElement> Children(this IEnumerable<IValueProvider> focus)
+        public static IEnumerable<IElementReader> Children(this IEnumerable<IValueProvider> focus)
         {
             return focus.JustElements().SelectMany(node => node.Children());
         }
 
-        public static IEnumerable<IElement> Descendants(this IEnumerable<IElement> focus)
+        public static IEnumerable<IElementReader> Descendants(this IEnumerable<IElementReader> focus)
         {
             return focus.SelectMany(node => node.Descendants());
         }
@@ -435,9 +435,9 @@ namespace Hl7.Fhir.FluentPath
             {
                 var result = value.Value != null ? value.Value.GetHashCode() : 0;
 
-                if (value is IElement)
+                if (value is IElementReader)
                 {
-                    result ^= (((IElement)value).GetChildNames().SingleOrDefault() ?? "key").GetHashCode();
+                    result ^= (((IElementReader)value).GetChildNames().SingleOrDefault() ?? "key").GetHashCode();
                 }
 
                 return result;

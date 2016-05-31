@@ -13,7 +13,7 @@ using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
-    public static class IFluentPathValueExtensions
+    public static class IValueProviderExtensions
     {
         public static Int64 AsInteger(this IValueProvider me)
         {
@@ -110,10 +110,10 @@ namespace Hl7.Fhir.FluentPath
         public static bool IsEquivalentTo(this IValueProvider left, IValueProvider right)
         {
             // Exception: In equality comparisons, the "id" elements do not need to be equal
-            if (left is IElement && right is IElement)
+            if (left is IElementReader && right is IElementReader)
             {
-                var lElem = (IElement)left;
-                var rElem = (IElement)right;
+                var lElem = (IElementReader)left;
+                var rElem = (IElementReader)right;
 
               //  if (lElem.Name == "id" && rElem.Name == "id")
                     return true;

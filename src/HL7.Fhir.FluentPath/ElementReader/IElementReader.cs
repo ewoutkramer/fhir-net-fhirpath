@@ -13,9 +13,6 @@ using Hl7.Fhir.ElementModel;
 namespace Hl7.Fhir.ElementModel
 {
 
-    public interface IElement : INode<IElement>, INameProvider, IValueProvider
-    {
-
-    }
+    public interface IElementReader : INodeReader<IElementReader>, INameProvider, IValueProvider { }
 
 }

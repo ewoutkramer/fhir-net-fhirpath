@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Copyright (c) 2014, Furore (info@furore.com) and contributors
  * See the file CONTRIBUTORS for details.
  * 
@@ -6,7 +6,10 @@
  * available at https://raw.githubusercontent.com/ewoutkramer/fhir-net-api/master/LICENSE
  */
 
+
 using Hl7.Fhir.Support;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,10 +22,32 @@ using System.Xml.Linq;
 namespace Hl7.Fhir.Serialization
 {
     public static class SerializationUtil
-    {     
+    {
+        public static bool ProbeIsXml(string data)
+        {
+            Regex xml = new Regex("^<[^>]+>");
+
+            return xml.IsMatch(data.TrimStart());
+        }
+
+        public static bool ProbeIsJson(string data)
+        {
+            return data.TrimStart().StartsWith("{");
+        }
+
+
+        public static XDocument XDocumentFromXmlText(string xml)
+        {
+            return XDocument.Parse(SerializationUtil.SanitizeXml(xml));
+        }
+
+
+        // [WMR 20160421] Note: StringReader, XmlReader and JsonReader don't require explicit disposal
+        // JsonTextReader overrides Close method => explicitly dispose
+
         public static XmlReader XmlReaderFromXmlText(string xml)
         {
-            return WrapXmlReader(XmlReader.Create(new StringReader(SanitizeXml(xml))));
+            return WrapXmlReader(XmlReader.Create(new StringReader(SerializationUtil.SanitizeXml(xml))));
         }
 
         public static XmlReader XmlReaderFromStream(Stream input)
@@ -45,11 +70,7 @@ namespace Hl7.Fhir.Serialization
             settings.IgnoreComments = true;
             settings.IgnoreProcessingInstructions = true;
             settings.IgnoreWhitespace = true;
-#if PORTABLE45
-            settings.DtdProcessing = DtdProcessing.Ignore;
-#else
-            settings.DtdProcessing = DtdProcessing.Parse;
-#endif
+            settings.DtdProcessing = DtdProcessing.Prohibit;
 
             return XmlReader.Create(xmlReader, settings);
         }
@@ -71,7 +92,20 @@ namespace Hl7.Fhir.Serialization
             return doc;
         }
 
+        // [WMR 20160421] Caller is responsible for disposing the returned Json(Text)Reader
+        public static JsonReader JsonReaderFromJsonText(string json)
+        {
+            JsonReader reader = new JsonTextReader(new StringReader(json));
+            reader.DateParseHandling = DateParseHandling.None;
+            reader.FloatParseHandling = FloatParseHandling.Decimal;
 
+            return reader;
+        }
+
+        public static JObject JObjectFromReader(JsonReader reader)
+        {
+            return JObject.Load(reader);
+        }
 
 
         /// <summary>

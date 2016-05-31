@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Collections.Generic;
-using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.ElementModel
 {
@@ -14,7 +13,9 @@ namespace Hl7.Fhir.ElementModel
                 return values.Select(value => value == null ? null : value is IValueProvider ? (IValueProvider)value : new ConstantValue(value));
             }
             else
+            {
                 return FhirValueList.Empty();
+            }
         }
 
         public static IEnumerable<IValueProvider> Empty()

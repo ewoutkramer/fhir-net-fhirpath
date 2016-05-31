@@ -13,15 +13,15 @@ using Hl7.Fhir.ElementModel;
 
 namespace Hl7.Fhir.FluentPath
 {
-    public static class IFluentPathElementExtensions
+    public static class IElementReaderExtensions
     {
-        public static IEnumerable<IElement> Children(this IElement element)
-        {
-            return element.GetChildNames().SelectMany(name => element.GetChildrenByName(name));
-        }
+        //public static IEnumerable<IElementReader> Children(this IElementReader element)
+        //{
+        //    return element.GetChildNames().SelectMany(name => element.GetChildrenByName(name));
+        //}
 
 
-        public static IEnumerable<IElement> Children(this IElement element, string name)
+        public static IEnumerable<IElementReader> Children(this IElementReader element, string name) 
         {
 
             // REFACTOR
@@ -36,7 +36,7 @@ namespace Hl7.Fhir.FluentPath
                 
                 if (rootname != null)
                 {
-                    var root = element.GetChildrenByName(rootname);
+                    var root = element.GetChildrenByName(rootname).First();
                     result = root.Children(name);
                 }
                     
@@ -45,9 +45,9 @@ namespace Hl7.Fhir.FluentPath
             return result;
         }
 
-        public static IEnumerable<IElement> Descendants(this IElement element)
+        public static IEnumerable<IElementReader> Descendants(this IElementReader element) 
         {
-            //TODO: Don't think this is performant with these nested yields
+            //TODO: Don't think this is performant with these nested yields --mh
             foreach (var child in element.Children())
             {
                 yield return child;
